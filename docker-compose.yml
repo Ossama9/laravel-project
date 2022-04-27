@@ -69,6 +69,19 @@ services:
             test: ["CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health"]
             retries: 3
             timeout: 5s
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        links:
+            - mysql:mysql
+        ports:
+            - 8888:80
+        environment:
+            MYSQL_USERNAME: '${DB_USERNAME}'
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}'
+            PMA_HOST: mysql
+        networks:
+            - sail
     mailhog:
         image: 'mailhog/mailhog:latest'
         ports:
