@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\UploadImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard/{id}', [MessageController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
+Route::post('/postNote', [NoteController::class,'postNote'])->middleware(['auth'])->name('postnote');
+
+Route::post('/postMessages',[MessageController::class,'postMessage'])->middleware(['auth'])->name('postmessage');
+
+Route::get('/annonces', [AnnonceController::class,'annonces'])->middleware(['auth'])->name('annonces');
+
+Route::get('upload-image', [UploadImageController::class, 'index']);
+Route::post('save', [UploadImageController::class, 'save']);
 
 require __DIR__.'/auth.php';
