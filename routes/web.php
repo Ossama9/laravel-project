@@ -21,6 +21,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+/*
+Route::get('/dashboard/{id}', [MessageController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
+Route::post('/postNote', [NoteController::class,'postNote'])->middleware(['auth'])->name('postnote');
+
+Route::post('/postMessages',[MessageController::class,'postMessage'])->middleware(['auth'])->name('postmessage');
+
+Route::get('/annonces', [AnnonceController::class,'annonces'])->middleware(['auth'])->name('annonces');
+
+Route::get('upload-image', [UploadImageController::class, 'index']);
+Route::post('save', [UploadImageController::class, 'save']);*/
+
+
 // Route Dashboard
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])
     ->middleware(['auth'])
