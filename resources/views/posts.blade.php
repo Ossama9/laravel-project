@@ -17,7 +17,7 @@
                             <li>{{ $post->modele->model }}</li>
                             <li>{{ $post->description }}</li>
                             <li>{{ $post->price }}</li>
-                            <li><img src="{{asset( $post->images[0]->path )}}" alt=""></li>
+                            <li><img src="{{asset ( $post->images[0]->path )}}" alt=""></li>
                         </ul>
                     </div>
                 @endforeach
