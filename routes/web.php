@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\BrandController as BrandController;
+use App\Http\Controllers\DashboardController as DashboardController;
+use App\Http\Controllers\ModeleController as ModeleController;
+use App\Http\Controllers\PostController as PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +21,45 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route Dashboard
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])
+    ->middleware(['auth'])
+    ->name('dashboard');
 
-require __DIR__.'/auth.php';
+
+// Route Creation Annonce
+Route::get('/createPost', [PostController::class, 'createPost'])
+    ->middleware(['auth'])
+    ->name('createPost');
+
+// Route Api Pour tous les models(A3,A4,G7)
+Route::get('/getModels', [ModeleController::class, 'getModels'])
+    ->name('getmodels');
+
+// Route Api pour tous les marques
+Route::get('/getBrands', [BrandController::class, 'getBrands'])
+    ->name('getbrands');
+
+
+// Route ModelBy Id
+Route::get('/getModelById/{id}', [ModeleController::class, 'getModelById'])
+    ->name('getModelById');
+
+
+/*// Route Recuperer les models avec leur marques
+Route::get('/brandByIdModel/{id}', [BrandController::class, 'brandByIdModel'])
+    ->name('brand');*/
+
+Route::get('/getModelByIdBrand/{id}', [ModeleController::class, 'getModelByIdBrand'])
+    ->name('getModelByIdBrand');
+
+Route::post('/submitPost', [PostController::class, 'submitPost'])
+    ->middleware(['auth'])
+    ->name('submitPost');
+
+Route::get('/posts/', [PostController::class, 'posts'])
+    ->name('posts');
+
+
+
+require __DIR__ . '/auth.php';
