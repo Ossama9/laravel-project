@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\Message;
 use App\Models\Modele;
 use App\Models\Modele as ModelAlias;
+use App\Models\Note;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -97,8 +99,29 @@ class PostController extends Controller
     public function getPost(Request $request)
     {
         $post = Post::find($request->id);
+        $id = $request->id;
+        //inserer msg
+        /*$message = new Message;
+        $message->users_id = Auth::id();
+        $message ->content = $request->message;
+        $message ->post_id= $request->post_id;
+        $message -> save();*/
 
-        return view('post', ["post" => $post]);
+        //get messages
+        $messages = Message::where('post_id',$id)->get();
+        $notes = Note::where('post_id',$id)->get();
+        $total = Note::where('post_id',$id)->sum('note');
+        $count = count($notes);
+        $res = $total/$count;
+        return view('post',['post' => $post, 'messages' => $messages, 'id' => $id,'count' => $count, 'resultat' => $res]);
+    }
+    public function postMessage(Request $request)
+    {
+
+    }
+
+    public function showMessage($id,Request $request){
+
     }
 
     public function updatePost(Request $request)

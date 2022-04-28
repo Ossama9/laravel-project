@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\BrandController as BrandController;
 use App\Http\Controllers\DashboardController as DashboardController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ModeleController as ModeleController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PostController as PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,12 +24,12 @@ Route::get('/', function () {
 });
 
 
-/*
+
 Route::get('/dashboard/{id}', [MessageController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
 Route::post('/postNote', [NoteController::class,'postNote'])->middleware(['auth'])->name('postnote');
 
 Route::post('/postMessages',[MessageController::class,'postMessage'])->middleware(['auth'])->name('postmessage');
-
+/*
 Route::get('/annonces', [AnnonceController::class,'annonces'])->middleware(['auth'])->name('annonces');
 
 Route::get('upload-image', [UploadImageController::class, 'index']);
@@ -73,9 +75,8 @@ Route::post('/submitPost', [PostController::class, 'submitPost'])
 Route::get('/posts/', [PostController::class, 'posts'])
     ->name('posts');
 
-Route::get('/post/{id}', [PostController::class, 'getPost'])
+Route::get('/post/{id?}', [PostController::class])
     ->name('post');
-
 
 
 Route::get('/updatePost/{id}', [PostController::class, 'updatePost'])

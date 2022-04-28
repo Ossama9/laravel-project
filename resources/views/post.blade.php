@@ -27,6 +27,18 @@ use \Illuminate\Support\Facades\Auth as Auth;
                         @endif
                     </ul>
                 </div>
+                <form method="post" action="{{ route('post') }}">
+                    @csrf
+                    <input type="text" name="message">
+                    <input type="hidden" value="{{ $id }}" name="post_id">
+                    <input type="submit" value="Envoyer un commentaire">
+                </form>
+                @foreach($messages as $message)
+                    <li>
+                        {{$message->user->name}} : {{ $message->content }} <span style="font-size: 9px; float: right">{{ $message->created_at }}</span><hr><br>
+
+                        @endforeach
+                    </li>
             </div>
         </div>
     </div>

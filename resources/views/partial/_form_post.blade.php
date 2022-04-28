@@ -1,3 +1,4 @@
+
 <form action="{{ route('submitPost') }}" method="POST" enctype="multipart/form-data">
 
     @if(isset($idPost))
