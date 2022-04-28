@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController as BrandController;
+use App\Http\Controllers\ContactController as ContactController;
 use App\Http\Controllers\DashboardController as DashboardController;
 use App\Http\Controllers\ModeleController as ModeleController;
 use App\Http\Controllers\PostController as PostController;
@@ -79,6 +80,16 @@ Route::get('/updatePost/{id}', [PostController::class, 'updatePost'])
 Route::get('deletePost/{id}',[PostController::class,'deletePost'])
     ->middleware(['auth'])
     ->name('deletePost');
+
+
+Route::get('contact/{id}',[ContactController::class,'contact'])
+    ->middleware(['auth'])
+    ->name('contact');
+
+Route::post('sendEmail',[ContactController::class,'sendEmail'])
+    ->middleware(['auth'])
+    ->name('sendEmail');
+
 
 
 
