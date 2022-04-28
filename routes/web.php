@@ -60,6 +60,14 @@ Route::post('/submitPost', [PostController::class, 'submitPost'])
 Route::get('/posts/', [PostController::class, 'posts'])
     ->name('posts');
 
+Route::get('/post/{id}', [PostController::class, 'getPost'])
+    ->name('post');
+
+
+
+Route::get('/updatePost/{id}', [PostController::class, 'updatePost'])
+    ->name('updatePost');
+
 
 
 require __DIR__ . '/auth.php';

@@ -21,6 +21,10 @@ class Post extends Model
     public function modele()
     {
         return $this->belongsTo(Modele::class);
+    }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

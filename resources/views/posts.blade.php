@@ -11,15 +11,19 @@
                 @foreach($posts as $post)
                     <div class="p-6 bg-white border-b border-gray-200">
                         <ul>
-                            <li>{{ $post->id }}</li>
-                            <li>{{ $post->user_id }}</li>
-                            <li>{{ $post->brand->brand }}</li>
-                            <li>{{ $post->modele->model }}</li>
-                            <li>{{ $post->description }}</li>
-                            <li>{{ $post->price }}</li>
-                            <li><img src="{{asset ( $post->images[0]->path )}}" alt=""></li>
+                            <li>{{ $post->id }} - {{ $post->user->name }} - {{ $post->created_at }}</li>
+                            <li>Model : {{ $post->brand->brand }} - Marque: {{ $post->modele->model }}</li>
+                            <li>Description : {{ $post->description }}</li>
+                            <li>Prix : {{ $post->price }} €</li>
+                            @foreach($post->images as $image)
+                                <li><img src="{{asset($image->path )}}" alt=""></li>
+                                @break
+                            @endforeach
+                            <br>
+                            <li><a href="{{ route('post',$post->id) }}" style="color: red;">Voir en detail</a></li>
                         </ul>
                     </div>
+                    <hr style="border-top-width: 10px;">
                 @endforeach
             </div>
         </div>
@@ -27,7 +31,7 @@
 </x-app-layout>
 
 <style>
-    img{
+    img {
         width: 300px;
         height: 200px;
     }

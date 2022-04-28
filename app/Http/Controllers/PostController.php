@@ -21,24 +21,60 @@ class PostController extends Controller
 
     public function submitPost(Request $request)
     {
-        $post = new Post();
-        $post->user_id = Auth::id();
-        $post->brand_id = $request->brand;
-        $post->modele_id = $request->model;
-        $post->description = $request->description;
-        $post->price = $request->price;
-        $post->save();
-        $this->idPost = $post->id;
-        $this->storeImage($request);
+
+        if ($request->has('idPost')) {
+            $this->idPost = $request->idPost;
+
+            $post = Post::findOrFail($this->idPost);
+            if ($post->user_id = !Auth::id())
+                abort(404);
+            $post->user_id = Auth::id();
+            $post->brand_id = $request->brand;
+            $post->modele_id = $request->model;
+            $post->description = $request->description;
+            $post->price = $request->price;
+            $post->save();
+
+            $images = $post->images;
+            foreach ($images as $image) {
+                $image->delete();
+            }
+            for ($i = 1; $i < 6; $i++) {
+                if ($request->has('image' . $i))
+                    $this->storeImage($request->file('image' . $i));
+
+
+            }
+        } else {
+            $post = new Post();
+            $post->user_id = Auth::id();
+            $post->brand_id = $request->brand;
+            $post->modele_id = $request->model;
+            $post->description = $request->description;
+            $post->price = $request->price;
+            $post->save();
+            $this->idPost = $post->id;
+
+            for ($i = 1; $i < 6; $i++) {
+                if ($request->has('image' . $i))
+                    $this->storeImage($request->file('image' . $i));
+
+
+            }
+        }
+
+
+//        $this->storeImage($request);
 
     }
 
-    public function storeImage(Request $request)
+    public function storeImage($picture)
     {
 
-        $path = $request->file('image1')->store('public/image');
+
+        $path = $picture->store('public/image');
         $path = str_replace("public", "storage", $path);
-        $name = $request->file('image1')->getClientOriginalName();
+        $name = $picture->getClientOriginalName();
         $image = new Image();
 
 //        $path = Storage::putFile('/', $request->file('image1'));
@@ -47,7 +83,6 @@ class PostController extends Controller
         $image->post_id = $this->idPost;
         $image->name = $name;
         $image->path = $path;
-
         $image->save();
     }
 
@@ -59,5 +94,32 @@ class PostController extends Controller
         return view('posts', ["posts" => $posts]);
     }
 
+    public function getPost(Request $request)
+    {
+        $post = Post::find($request->id);
+
+        return view('post', ["post" => $post]);
+    }
+
+    public function updatePost(Request $request)
+    {
+
+        $post = Post::find($request->id);
+
+        if ($post->user_id = !Auth::id())
+            abort(404);
+
+        return view('updatepost', ["post" => $post, "idPost" => $request->id]);
+    }
+
+    public function deletePost(Request $request)
+    {
+        $post = Post::findOrFail($this->idPost);
+        if ($post->user_id = !Auth::id())
+            abort(404);
+
+        $post->delete();
+        return redirect(route('posts'));
+    }
 
 }
