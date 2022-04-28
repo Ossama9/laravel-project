@@ -23,7 +23,9 @@ use \Illuminate\Support\Facades\Auth as Auth;
                         @endforeach
 
                     @if($post->user_id === Auth::id())
-                            <li><a href="{{ route('updatePost',$post->id) }}" style="color: red;">Modifier l'article</a></li>
+                            <li><a href="{{ route('updatePost',$post->id) }}" style="color: #2563eb;">Modifier l'annonce</a></li>
+
+                            <li><a href="{{ route('deletePost',$post->id) }}" style="color: red;">Supprimer l'annonce</a></li>
                         @endif
                     </ul>
                 </div>

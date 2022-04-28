@@ -64,7 +64,7 @@ class PostController extends Controller
         }
 
 
-//        $this->storeImage($request);
+        return redirect(route('posts'));
 
     }
 
@@ -96,8 +96,8 @@ class PostController extends Controller
 
     public function getPost(Request $request)
     {
-        $post = Post::find($request->id);
 
+        $post = Post::find($request->id);
         return view('post', ["post" => $post]);
     }
 
@@ -114,9 +114,10 @@ class PostController extends Controller
 
     public function deletePost(Request $request)
     {
-        $post = Post::findOrFail($this->idPost);
+        $post = Post::findOrFail($request->id);
         if ($post->user_id = !Auth::id())
             abort(404);
+
 
         $post->delete();
         return redirect(route('posts'));

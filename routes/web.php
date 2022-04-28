@@ -58,15 +58,27 @@ Route::post('/submitPost', [PostController::class, 'submitPost'])
     ->name('submitPost');
 
 Route::get('/posts/', [PostController::class, 'posts'])
+    ->middleware(['auth'])
     ->name('posts');
 
 Route::get('/post/{id}', [PostController::class, 'getPost'])
+    ->middleware(['auth'])
     ->name('post');
 
 
 
 Route::get('/updatePost/{id}', [PostController::class, 'updatePost'])
+    ->middleware(['auth'])
     ->name('updatePost');
+
+
+Route::get('/updatePost/{id}', [PostController::class, 'updatePost'])
+    ->middleware(['auth'])
+    ->name('updatePost');
+
+Route::get('deletePost/{id}',[PostController::class,'deletePost'])
+    ->middleware(['auth'])
+    ->name('deletePost');
 
 
 
