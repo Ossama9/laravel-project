@@ -17,7 +17,7 @@ class MessageController extends Controller
         $message->user_id = Auth::id();
         $message->content = $request->message;
         $message->save();
-        return redirect(route('post', $request->post_id));
+        return redirect(route('post', $request->post_id))->with('success','Message créé avec succés');
     }
 
 }

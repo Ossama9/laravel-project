@@ -29,6 +29,9 @@
 
             <!-- Page Content -->
             <main>
+                <div>
+                    @include('flash')
+                </div>
                 {{ $slot }}
             </main>
         </div>

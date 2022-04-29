@@ -14,7 +14,7 @@ class NoteController extends Controller
         $note->note = $request->note;
         $note->post_id= $request->post_id;
         $note -> save();
-        return redirect(route('post', $request->post_id));
+        return redirect(route('post', $request->post_id))->with('success','Note créé avec succés');
     }
 
 }

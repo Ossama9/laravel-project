@@ -43,28 +43,29 @@ class PostController extends Controller
                 if ($request->has('image' . $i))
                     $this->storeImage($request->file('image' . $i));
 
-
             }
-        } else {
-            $post = new Post();
-            $post->user_id = Auth::id();
-            $post->brand_id = $request->brand;
-            $post->modele_id = $request->model;
-            $post->description = $request->description;
-            $post->price = $request->price;
-            $post->save();
-            $this->idPost = $post->id;
+            return redirect(route('posts'))->with('info','votre annonce est mis à jour avec succés');
 
-            for ($i = 1; $i < 6; $i++) {
-                if ($request->has('image' . $i))
-                    $this->storeImage($request->file('image' . $i));
-
-
-            }
         }
 
+        $post = new Post();
+        $post->user_id = Auth::id();
+        $post->brand_id = $request->brand;
+        $post->modele_id = $request->model;
+        $post->description = $request->description;
+        $post->price = $request->price;
+        $post->save();
+        $this->idPost = $post->id;
 
-        return redirect(route('posts'));
+        for ($i = 1; $i < 6; $i++) {
+            if ($request->has('image' . $i))
+                $this->storeImage($request->file('image' . $i));
+
+
+        }
+        return redirect(route('posts'))->with('success','Annonce créé avec succés');
+
+
 //        $this->storeImage($request);
 
     }
@@ -122,7 +123,7 @@ class PostController extends Controller
         if ($post->user_id = !Auth::id())
             abort(404);
 
-        return view('updatepost', ["post" => $post, "idPost" => $request->id]);
+        return view('updatepost', ["post" => $post, "idPost" => $request->id])->with('info','Vous allez mettre à jour votre annonce');
     }
 
     public function deletePost(Request $request)
@@ -132,7 +133,7 @@ class PostController extends Controller
             abort(404);
 
         $post->delete();
-        return redirect(route('posts'));
+        return redirect(route('posts'))->with('warning','Votre annonce est supprimé');
     }
 
 }
