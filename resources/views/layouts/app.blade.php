@@ -29,7 +29,12 @@
 
             <!-- Page Content -->
             <main>
-                <div>
+
+                <div class="error" style="text-align: center;background-color: #ff00006b;margin-left: 30%;justify-content: space-around;margin-right: 30%;color: white;">
+                    @include('errors')
+                </div>
+
+                <div class="alert">
                     @include('flash')
                 </div>
                 {{ $slot }}

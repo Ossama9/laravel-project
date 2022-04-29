@@ -1,5 +1,5 @@
 @if ($message = Session::get('success'))
-    <div class="alert alert-success alert-block">
+    <div class="alert alert-success alert-block" style="display: flex;justify-content: center;padding: 10px;background-color: #00ff2d94;color: white;">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <strong>{{ $message }}</strong>
     </div>

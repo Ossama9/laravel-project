@@ -11,6 +11,7 @@
 
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3>Contact {{ $post->user->name }}</h3>
+
                     <br>
                     <form action="{{ route('sendEmail') }}" method="post">
                         <br>

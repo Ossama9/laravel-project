@@ -21,7 +21,13 @@ class ContactController extends Controller
     public function sendEmail(Request $request)
     {
 
+
         $post = Post::findOrFail($request->id_post);
+
+        $validated = $request->validate([
+            'subject' => 'required|max:255',
+            'message' => 'required',
+        ]);
 
         Mail::to($post->user->email)
             ->send(new SendMail($post, $request));
