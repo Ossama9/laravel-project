@@ -90,9 +90,9 @@ class PostController extends Controller
     public function posts()
     {
         $posts = Post::all();
-
-
+        $posts = Post::paginate(1);
         return view('posts', ["posts" => $posts]);
+
     }
 
     public function getPost(Request $request)
