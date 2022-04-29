@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+{{--            {{ __('Dashboard') }}--}}
         </h2>
     </x-slot>
 
@@ -12,7 +12,7 @@
                     <form method="post" action="{{ route('postmessage') }}">
                         @csrf
                         <input type="text" name="message">
-                        <input type="hidden" value="{{ $id }}" name="post_id">
+{{--                        <input type="hidden" value="{{ $id }}" name="post_id">--}}
                         <input type="submit" value="Envoyer un commentaire">
                     </form>
                     <form method="post" action="{{ route('postnote') }}">
@@ -25,18 +25,18 @@
                             <option value=4>4/5</option>
                             <option value=5>5/5</option>
                         </select>
-                        <input type="hidden" value="{{ $id }}"  name="post_id">
+{{--                        <input type="hidden" value="{{ $id }}"  name="post_id">--}}
                         <input type="submit" value="Envoyer une note">
                     </form>
                     <br><br>
-                    {{$resultat}}/5 -- {{$count}} Avis
-                    @foreach($messages as $message)
-                        <li>
-                            {{$message->user->name}} : {{ $message->content }} <span style="font-size: 9px; float: right">{{ $message->created_at }}</span><hr><br>
+{{--                    {{$resultat}}/5 -- {{$count}} Avis--}}
+{{--                    @foreach($messages as $message)--}}
+{{--                        <li>--}}
+{{--                            {{$message->user->name}} : {{ $message->content }} <span style="font-size: 9px; float: right">{{ $message->created_at }}</span><hr><br>--}}
 
-                            @endforeach
-                        </li>
-                        </ul>
+{{--                            @endforeach--}}
+{{--                        </li>--}}
+{{--                        </ul>--}}
                 </div>
             </div>
         </div>

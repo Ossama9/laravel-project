@@ -64,6 +64,7 @@ class PostController extends Controller
         }
 
 
+        return redirect(route('posts'));
 //        $this->storeImage($request);
 
     }
@@ -96,9 +97,21 @@ class PostController extends Controller
 
     public function getPost(Request $request)
     {
+
         $post = Post::find($request->id);
 
-        return view('post', ["post" => $post]);
+        $notes = $post->notes();
+
+        if ($notes->count())
+        {
+            $count = $notes->count() ;
+            $total = $notes->sum('note');
+            $moy = $total/$count ;
+            $moy = round($moy, 1);
+        }
+
+
+        return view('post', ["post" => $post, "moy" => $moy ?? null]);
     }
 
     public function updatePost(Request $request)
