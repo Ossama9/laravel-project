@@ -47,7 +47,8 @@
                             <br>
                             <ul>
                                 <li>{{ $message->user->name }}: {{ $message->content }} <span style="float: right">{{ $message->created_at }}</span></li>
-                                @if($post->user_id === Auth::id())
+
+                                @if($message->user->id === Auth::id())
                                     <li><a href="{{ route('deleteComment',$message->id) }}" style="color: red;">Supprimer commentaire</a>
                                         </li>
                                 @endif
