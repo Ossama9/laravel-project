@@ -7,21 +7,24 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            {{$posts->links();}}
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
                 @foreach($posts as $post)
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <ul>
+                          <ul>
                             <li>{{ $post->id }} - {{ $post->user->name }} - {{ $post->created_at }}</li>
                             <li>Model : {{ $post->brand->brand }} - Marque: {{ $post->modele->model }}</li>
                             <li>Description : {{ $post->description }}</li>
                             <li>Prix : {{ $post->price }} €</li>
-                            @foreach($post->images as $image)
-                                <li><img src="{{asset($image->path )}}" alt=""></li>
-                                @break
-                            @endforeach
-                            <br>
-                            <li><a href="{{ route('post',$post->id) }}" style="color: #2563eb;">Voir en detail</a></li>
+
+                                @foreach($post->images as $image)
+                                    <li><img src="{{asset($image->path )}}" alt=""></li>
+                                    @break
+                                @endforeach
+                        <li><a href="{{ route('post',$post->id) }}" style="color: #2563eb;">Voir en detail</a></li>
                         </ul>
+                            <br>
                     </div>
                     <hr style="border-top-width: 10px;">
                 @endforeach
