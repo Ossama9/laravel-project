@@ -10,6 +10,9 @@ class NoteController extends Controller
 
     public function postNote(Request $request)
     {
+        $validated = $request->validate([
+            'note' => 'required'
+        ]);
         $note = new Note;
         $note->note = $request->note;
         $note->post_id= $request->post_id;

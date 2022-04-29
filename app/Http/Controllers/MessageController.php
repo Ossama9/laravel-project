@@ -12,6 +12,9 @@ class MessageController extends Controller
 
     public function postMessage(Request $request)
     {
+        $validated = $request->validate([
+            'message' => 'required'
+        ]);
         $message = new Message;
         $message->post_id = $request->post_id;
         $message->user_id = Auth::id();

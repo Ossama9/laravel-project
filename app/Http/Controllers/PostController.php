@@ -22,6 +22,13 @@ class PostController extends Controller
 
     public function submitPost(Request $request)
     {
+        $validated = $request->validate([
+            'brand' => 'required',
+            'model' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'image1' => 'required'
+        ]);
 
         if ($request->has('idPost')) {
             $this->idPost = $request->idPost;
@@ -45,6 +52,7 @@ class PostController extends Controller
                     $this->storeImage($request->file('image' . $i));
 
             }
+
             return redirect(route('posts'))->with('info','votre annonce est mis à jour avec succés');
 
         }
