@@ -20,4 +20,16 @@ class MessageController extends Controller
         return redirect(route('post', $request->post_id))->with('success','Message créé avec succés');
     }
 
+    public function deleteComment(Request $request)
+    {
+        $commentaire = Message::findOrFail($request->id);
+        $post_id = $commentaire->post_id;
+
+        if ($commentaire->user_id = !Auth::id())
+            abort(404);
+
+        $commentaire->delete();
+        return redirect(route('post',$post_id))->with('success','Message supprimé avec succés');
+    }
+
 }

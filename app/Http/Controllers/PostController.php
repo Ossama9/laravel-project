@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\Message;
 use App\Models\Modele;
 use App\Models\Modele as ModelAlias;
 use App\Models\Post;

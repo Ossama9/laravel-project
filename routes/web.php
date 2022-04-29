@@ -81,6 +81,9 @@ Route::get('/updatePost/{id}', [PostController::class, 'updatePost'])
     ->middleware(['auth'])
     ->name('updatePost');
 
+Route::get('/deleteComment/{id}', [MessageController::class, 'deleteComment'])
+    ->middleware(['auth'])
+    ->name('deleteComment');
 
 Route::get('/updatePost/{id}', [PostController::class, 'updatePost'])
     ->middleware(['auth'])
