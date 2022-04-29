@@ -21,6 +21,3 @@
 </x-app-layout>
 
 
-<script>
-    console.log($('.py-12'))
-</script>

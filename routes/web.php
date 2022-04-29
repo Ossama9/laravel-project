@@ -7,6 +7,8 @@ use App\Http\Controllers\MessageController as MessageController;
 use App\Http\Controllers\ModeleController as ModeleController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PostController as PostController;
+use App\Http\Controllers\StripController as StripController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -101,6 +103,15 @@ Route::get('contact/{id}',[ContactController::class,'contact'])
 Route::post('sendEmail',[ContactController::class,'sendEmail'])
     ->middleware(['auth'])
     ->name('sendEmail');
+
+Route::get('initPayement/{id}',[StripController::class,'initPayement'])
+    ->middleware(['auth'])
+    ->name('initPayement');
+
+
+Route::post('postPayement',[StripController::class,'postPayement'])
+    ->middleware(['auth'])
+    ->name('postPayement');
 
 
 
