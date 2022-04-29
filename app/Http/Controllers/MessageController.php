@@ -17,17 +17,19 @@ class MessageController extends Controller
         $message->user_id = Auth::id();
         $message->content = $request->message;
         $message->save();
-        return redirect(route('post', $request->post_id));
+        return redirect(route('post', $request->post_id))->with('success','Message créé avec succés');
     }
 
     public function deleteComment(Request $request)
     {
-        $cmt = Message::findOrFail($this->idPost);
-        if ($cmt->user_id = !Auth::id())
+        $commentaire = Message::findOrFail($request->id);
+        $post_id = $commentaire->post_id;
+
+        if ($commentaire->user_id = !Auth::id())
             abort(404);
 
-        $cmt->delete();
-        return redirect(route('posts'));
+        $commentaire->delete();
+        return redirect(route('post',$post_id))->with('success','Message supprimé avec succés');
     }
 
 }
