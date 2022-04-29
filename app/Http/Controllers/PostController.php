@@ -135,14 +135,5 @@ class PostController extends Controller
         $post->delete();
         return redirect(route('posts'));
     }
-    public function deleteComment(Request $request)
-    {
-        $cmt = Message::findOrFail($this->idPost);
-        if ($cmt->user_id = !Auth::id())
-            abort(404);
-
-        $cmt->delete();
-        return redirect(route('posts'));
-    }
 
 }

@@ -20,4 +20,14 @@ class MessageController extends Controller
         return redirect(route('post', $request->post_id));
     }
 
+    public function deleteComment(Request $request)
+    {
+        $cmt = Message::findOrFail($this->idPost);
+        if ($cmt->user_id = !Auth::id())
+            abort(404);
+
+        $cmt->delete();
+        return redirect(route('posts'));
+    }
+
 }
