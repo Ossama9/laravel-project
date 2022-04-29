@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController as BrandController;
+use App\Http\Controllers\ContactController as ContactController;
 use App\Http\Controllers\DashboardController as DashboardController;
 use App\Http\Controllers\MessageController as MessageController;
 use App\Http\Controllers\ModeleController as ModeleController;
@@ -68,14 +69,36 @@ Route::post('/submitPost', [PostController::class, 'submitPost'])
     ->name('submitPost');
 
 Route::get('/posts/', [PostController::class, 'posts'])
+    ->middleware(['auth'])
     ->name('posts');
 
 Route::get('/post/{id}', [PostController::class, 'getPost'])
+    ->middleware(['auth'])
     ->name('post');
 
 
 Route::get('/updatePost/{id}', [PostController::class, 'updatePost'])
+    ->middleware(['auth'])
     ->name('updatePost');
+
+
+Route::get('/updatePost/{id}', [PostController::class, 'updatePost'])
+    ->middleware(['auth'])
+    ->name('updatePost');
+
+Route::get('deletePost/{id}',[PostController::class,'deletePost'])
+    ->middleware(['auth'])
+    ->name('deletePost');
+
+
+Route::get('contact/{id}',[ContactController::class,'contact'])
+    ->middleware(['auth'])
+    ->name('contact');
+
+Route::post('sendEmail',[ContactController::class,'sendEmail'])
+    ->middleware(['auth'])
+    ->name('sendEmail');
+
 
 
 require __DIR__ . '/auth.php';

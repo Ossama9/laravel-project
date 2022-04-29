@@ -20,7 +20,7 @@
                                 @break
                             @endforeach
                             <br>
-                            <li><a href="{{ route('post',$post->id) }}" style="color: red;">Voir en detail</a></li>
+                            <li><a href="{{ route('post',$post->id) }}" style="color: #2563eb;">Voir en detail</a></li>
                         </ul>
                     </div>
                     <hr style="border-top-width: 10px;">
