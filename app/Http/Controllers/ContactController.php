@@ -32,6 +32,6 @@ class ContactController extends Controller
         Mail::to($post->user->email)
             ->send(new SendMail($post, $request));
 
-        return redirect(route('contact',$request->id_post));
+        return redirect(route('contact',$request->id_post))->with('success','votre message a été envoyé par mail');
     }
 }
