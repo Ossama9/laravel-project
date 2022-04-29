@@ -45,6 +45,10 @@
                                 <li>Utilisateur : {{ $message->user->name }}</li>
                                 <br>
                                 <li>Message : {{ $message->content }}</li>
+                                @if($post->user_id === Auth::id())
+                                    <li><a href="{{ route('deleteComment',$post->id) }}" style="color: red;">Supprimer commentaire</a>
+                                    </li>
+                                @endif
                             </ul>
                             <br>
                             <hr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\Message;
 use App\Models\Modele;
 use App\Models\Modele as ModelAlias;
 use App\Models\Post;
@@ -132,6 +133,15 @@ class PostController extends Controller
             abort(404);
 
         $post->delete();
+        return redirect(route('posts'));
+    }
+    public function deleteComment(Request $request)
+    {
+        $cmt = Message::findOrFail($this->idPost);
+        if ($cmt->user_id = !Auth::id())
+            abort(404);
+
+        $cmt->delete();
         return redirect(route('posts'));
     }
 
