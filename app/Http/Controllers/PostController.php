@@ -139,11 +139,14 @@ class PostController extends Controller
         return redirect(route('posts'))->with('warning','Votre annonce est supprimé');
     }
 
-    public function filtre(Request $request)
+    public function filtre_dcr(Request $request)
     {
-        $post = Post::where('brand_id', 3);
-        //$min = Post::where('price','>', $request->min);
-        //$min = Post::where('price','<', $request->max);
+        $post = Post::orderBy('price', 'desc')->get();
+        return view('posts', ["posts" => $post]);
+    }
+    public function filtre_cr(Request $request)
+    {
+        $post = Post::orderBy('price', 'asc')->get();
         return view('posts', ["posts" => $post]);
     }
 

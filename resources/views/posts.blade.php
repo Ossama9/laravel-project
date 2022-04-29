@@ -7,7 +7,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @include('partial._form_add_filtre')
+            <button style="margin: 10px; padding: 5px; background-color: green; color:white"><a href="{{ route('filtre_cr') }}" >filtrer par prix croissant</a></button>
+            <button style="margin: 10px;padding: 5px; background-color: red; color:white" ><a href="{{ route('filtre_dcr') }}" >filtrer par prix decroissant</a></button>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 @foreach($posts as $post)
                     <div class="p-6 bg-white border-b border-gray-200">
