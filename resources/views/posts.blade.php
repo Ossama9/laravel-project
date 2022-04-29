@@ -11,9 +11,8 @@
                     href="{{ route('filtre_cr') }}">filtrer par prix croissant</a></button>
             <button style="margin: 10px;padding: 5px; background-color: red; color:white"><a
                     href="{{ route('filtre_dcr') }}">filtrer par prix decroissant</a></button>
-            @if(isset($posts->links))
-                {{ $posts->links() }}
-            @endif
+
+
 
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

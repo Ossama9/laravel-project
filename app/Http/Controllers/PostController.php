@@ -101,7 +101,7 @@ class PostController extends Controller
 
     public function posts()
     {
-        $posts = Post::paginate(5);
+        $posts = Post::all();
 
         $brands = Brand::all();
 
