@@ -12,23 +12,27 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3>Information</h3>
                     @if(isset($moy))
-                        <h3>Note/5 : {{ $moy }}</h3>
+                        <h3><strong>Note/5 : {{ $moy }}</strong></h3><br><br>
 
                     @endif
-                    <ul>
+                    <div style="display: flex; justify-content: space-between;">
+                     <div>
+                     <ul>
                         <li>{{ $post->id }} - {{ $post->user->name }} - {{ $post->created_at }}</li>
                         <li>Model : {{ $post->brand->brand }} - Marque: {{ $post->modele->model }}</li>
                         <li>Description : {{ $post->description }}</li>
                         <li>Prix : {{ $post->price }} €</li>
-                        @foreach($post->images as $image)
-                            <li><img src="{{asset($image->path )}}" alt=""></li>
-                        @endforeach
 
                         @if($post->user_id === Auth::id())
                             <li><a href="{{ route('updatePost',$post->id) }}" style="color: red;">Modifier l'article</a>
                             </li>
                         @endif
-                    </ul>
+                     </ul>
+                     </div>
+                     <div>
+                     @foreach($post->images as $image)
+                     <li><img src="{{asset($image->path )}}" alt=""></li>
+                     @endforeach</div></div>
                 </div>
 
 
@@ -37,14 +41,12 @@
                 @if($post->messages->count())
                     <div class="p-6 bg-white border-b border-gray-200">
 
-                        <h3>Commentaires: </h3><br>
+                        <h3><strong>Commentaires</strong></h3><br>
 
                         @foreach($post->messages as $message)
                             <br>
                             <ul>
-                                <li>Utilisateur : {{ $message->user->name }}</li>
-                                <br>
-                                <li>Message : {{ $message->content }}</li>
+                                <li>{{ $message->user->name }}: {{ $message->content }} <span style="float: right">{{ $message->created_at }}</span></li>
                                 @if($post->user_id === Auth::id())
                                     <li><a href="{{ route('deleteComment',$message->id) }}" style="color: red;">Supprimer commentaire</a>
                                         </li>
