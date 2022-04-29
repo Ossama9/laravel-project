@@ -23,10 +23,12 @@
                         <li>Description : {{ $post->description }}</li>
                         <li>Prix : {{ $post->price }} €</li>
 
-                        @if($post->user_id === Auth::id())
-                            <li><a href="{{ route('updatePost',$post->id) }}" style="color: red;">Modifier l'article</a>
-                            </li>
-                        @endif
+                         @if($post->user_id === Auth::id())
+                             <li><a href="{{ route('updatePost',$post->id) }}" style="color: red;">Modifier l'article</a></li>
+                         @else
+                             <li><a href="{{ route('contact',$post->id) }}" style="color: rgba(0,94,255,0.71);">Contacter le proprietaire </a></li>
+
+                         @endif
                      </ul>
                      </div>
                      <div>
