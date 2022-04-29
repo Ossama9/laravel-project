@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{--            {{ __('Dashboard') }}--}}
+                        {{ __('Add Post') }}
         </h2>
     </x-slot>
 
@@ -13,7 +13,6 @@
                     <h3>Information</h3>
                     @if(isset($moy))
                         <h3>Note/5 : {{ $moy }}</h3>
-
                     @endif
                     <ul>
                         <li>{{ $post->id }} - {{ $post->user->name }} - {{ $post->created_at }}</li>
@@ -25,8 +24,10 @@
                         @endforeach
 
                         @if($post->user_id === Auth::id())
-                            <li><a href="{{ route('updatePost',$post->id) }}" style="color: red;">Modifier l'article</a>
-                            </li>
+                            <li><a href="{{ route('updatePost',$post->id) }}" style="color: red;">Modifier l'article</a></li>
+                        @else
+                            <li><a href="{{ route('contact',$post->id) }}" style="color: rgba(0,94,255,0.71);">Contacter le proprietaire </a></li>
+
                         @endif
                     </ul>
                 </div>
