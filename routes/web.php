@@ -68,6 +68,14 @@ Route::post('/submitPost', [PostController::class, 'submitPost'])
     ->middleware(['auth'])
     ->name('submitPost');
 
+Route::get('/filtre_cr', [PostController::class, 'filtre_cr'])
+    ->middleware(['auth'])
+    ->name('filtre_cr');
+
+Route::get('/filtre_dcr', [PostController::class, 'filtre_dcr'])
+    ->middleware(['auth'])
+    ->name('filtre_dcr');
+
 Route::get('/posts/', [PostController::class, 'posts'])
     ->middleware(['auth'])
     ->name('posts');

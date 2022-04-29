@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Image;
 use App\Models\Message;
 use App\Models\Modele;
@@ -97,12 +98,15 @@ class PostController extends Controller
         $image->save();
     }
 
+
     public function posts()
     {
-        $posts = Post::all();
-        $posts = Post::paginate(1);
-        return view('posts', ["posts" => $posts]);
+        $posts = Post::paginate(5);
 
+        $brands = Brand::all();
+
+
+        return view('posts', ["posts" => $posts, "brands"=>$brands]);
     }
 
     public function getPost(Request $request)
@@ -144,5 +148,20 @@ class PostController extends Controller
         $post->delete();
         return redirect(route('posts'))->with('warning','Votre annonce est supprimé');
     }
+
+
+    public function filtre_dcr(Request $request)
+    {
+        $posts = Post::orderBy('price', 'desc')->get();
+        return view('posts', ["posts" =>$posts]);
+    }
+
+    public function filtre_cr(Request $request)
+    {
+
+        $posts = Post::orderBy('price', 'asc')->get();
+        return view('posts', ["posts" => $posts ]);
+    }
+
 
 }
