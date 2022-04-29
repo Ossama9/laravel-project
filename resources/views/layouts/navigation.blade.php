@@ -10,7 +10,13 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('posts')" :active="request()->routeIs('posts')">
+                        {{ __('Annonces') }}
+                    </x-nav-link>
 
+                    <x-nav-link :href="route('createPost')" :active="request()->routeIs('createPost')">
+                        {{ __('Ajouter une annonce') }}
+                    </x-nav-link>
                 </div>
             </div>
 

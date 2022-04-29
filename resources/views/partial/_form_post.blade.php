@@ -22,11 +22,12 @@
 
     <label for="priceInput">Price: </label>
     <input type="number" step="0.01" name="price" id="priceInput"><br><br>
+        <label for="imageInput">Photo principal: </label>
     <input type="file" accept="image/*" id="imageInput" name="image1"><br><br>
-    <input type="file" accept="image/*" id="imageInput" name="image2"><br><br>
-    <input type="file" accept="image/*" id="imageInput" name="image3"><br><br>
-    <input type="file" accept="image/*" id="imageInput" name="image4"><br><br>
-    <input type="file" accept="image/*" id="imageInput" name="image5"><br><br>
+    <input type="file" accept="image/*" id="" name="image2"><br><br>
+    <input type="file" accept="image/*" id="" name="image3"><br><br>
+    <input type="file" accept="image/*" id="" name="image4"><br><br>
+    <input type="file" accept="image/*" id="" name="image5"><br><br>
     {{--                        <input type="file" accept="image/*" id="imageInput" name="image2"><br><br>--}}
 
 
