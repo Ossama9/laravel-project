@@ -146,6 +146,7 @@ class PostController extends Controller
     }
     public function filtre_cr(Request $request)
     {
+
         $post = Post::orderBy('price', 'asc')->get();
         return view('posts', ["posts" => $post]);
     }
